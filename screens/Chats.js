@@ -1,8 +1,7 @@
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View } from "react-native";
 import React, { useEffect } from "react";
 import ContactRow from "../components/ContactRow";
 import Seperator from "../components/Seperator";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const Chats = ({ navigation }) => {
   const chats = [
@@ -25,7 +24,7 @@ const Chats = ({ navigation }) => {
   ];
 
   useEffect(() => {
-    const isLoggedIn = true;
+    const isLoggedIn = false;
     if (!isLoggedIn) {
       navigation.navigate("Signup");
     }

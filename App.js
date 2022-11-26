@@ -7,6 +7,7 @@ import Settings from "./screens/Settings";
 import {Ionicons} from '@expo/vector-icons'
 import { colors } from "./config/constans";
 import Signup from "./components/Signup";
+import Signin from "./components/Signin";
 import Chat from "./screens/Chat";
 
 const ChatsStack = createNativeStackNavigator()
@@ -74,6 +75,7 @@ const App = () => {
       >
         <MainStack.Screen name="Tabs" component={TabsScreen} />
         <MainStack.Screen name="Signup" component={Signup} />
+        <MainStack.Screen name="Signin" component={Signin} />
       </MainStack.Navigator>
     </NavigationContainer>
   );

@@ -4,48 +4,23 @@ import { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { colors } from '../config/constans'
 import Button from '../components/Button'
-import { signup } from '../axios'
+import { login } from '../axios'
 
-const Signup = ({ navigation }) => {
+const Signin = ({ navigation }) => {
     const [formData, setFormData] = useState({
-        name: "",
-        lastname: "",
-        password: "",
         email: "",
-        avatarImage: ""
+        password: "",
     })
 
   return (
     <View style={styles.container}>
         <SafeAreaView>
             <View style={styles.contentContainer}>
-                <Text style={styles.title}>Create a New Account</Text>
+                <Text style={styles.title}>Login Your Account</Text>
                 <TextInput
                     style={styles.input} 
                     autoCapitalize="none" 
-                    placeholder='Enter your name'
-                    onChangeText={(e) => {
-                        setFormData({
-                            ...formData,
-                            name: e
-                        })
-                    }}
-                />
-                <TextInput
-                    style={styles.input} 
-                    autoCapitalize="none" 
-                    placeholder='Enter your lastname'
-                    onChangeText={(e) => {
-                        setFormData({
-                            ...formData,
-                            lastname: e
-                        })
-                    }}
-                />
-                <TextInput
-                    style={styles.input} 
-                    autoCapitalize="none" 
-                    placeholder='Enter your email'
+                    placeholder='Email'
                     onChangeText={(e) => {
                         setFormData({
                             ...formData,
@@ -56,7 +31,7 @@ const Signup = ({ navigation }) => {
                 <TextInput
                     style={styles.input} 
                     autoCapitalize="none" 
-                    placeholder='Enter your password'
+                    placeholder='Password'
                     secureTextEntry={true}
                     onChangeText={(e) => {
                         setFormData({
@@ -67,23 +42,24 @@ const Signup = ({ navigation }) => {
                 />
 
                 <View style={styles.buttonsContainer}>
+
                     <Button
-                        label="Sign up"
+                        label="Sign in"
                         onPress={() => {
-                            signup(formData).then(res => {
+                            login(formData).then(res => {
                                 if(res.status == 201)
-                                navigation.navigate("Signin")
+                                navigation.goBack();
+                                navigation.navigate("Chats")
                             })
                             .catch(err => console.log(err))
                         }}
                     />
                     <Button
-                        label="Sign in"
+                        label="Sign Up"
                         onPress={() => {
-                            navigation.navigate("Signin")
+                            navigation.navigate("Signup")
                         }}
                     />
-
                 </View>
             </View>
             
@@ -122,4 +98,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Signup
+export default Signin
